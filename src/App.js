@@ -1,37 +1,47 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Header from "./components/Header";
+import FileResizer from "react-image-file-resizer";
 import { useState } from "react";
-import { Outlet, Router, useNavigate } from "react-router-dom";
-import { Container, Navbar, Row, Button, Nav } from "react-bootstrap";
-const App = () => {
-  const nav = useNavigate();
 
-  const [newWidth, setNewWidth] = useState(500);
+const App = () => {
+
+  const [newImageURI, setNewImageURI] = useState(undefined);
+  const [newWidth, setNewWidth] = useState(250);
+
+  const imageChangedHandler = (e) => {
+    var fileInput = false;
+
+    if (e.target.files[0]) {
+      fileInput = true; // ? If an image has been downloaded by user
+
+      if (fileInput) {
+        try {
+          FileResizer.imageFileResizer(
+            e.target.files[0], // * file
+            newWidth, // * maxWidth
+            e.target.files[0].height, // * maxHeight
+            "JPEG", // * compressFormat
+            100, // * quality
+            0, // * rotation
+            (uri) => {
+              // * responseUriFunc
+              setNewImageURI(uri);
+            },
+            "base64" // * outputType
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
+  };
 
   return (
-    <>
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="/home">
-            <img
-              src="https://i.pinimg.com/originals/b9/6a/1c/b96a1c778ec7aea640c8e1eafa018cc4.png"
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-            />
-          </Navbar.Brand>
-          <Nav fill className="me-auto">
-            <Nav.Link href="format">Accueil</Nav.Link>
-            <Nav.Link href="options">Redimensionner une image</Nav.Link>
-            <Nav.Link href="help">Besoin d'aide ?</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
-      <Outlet newWidth={newWidth} />
-    </>
+    <div className="App">
+      <Header />
+    </div>
   );
-};
+}
 
 export default App;

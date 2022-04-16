@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import FileResizer from "react-image-file-resizer";
 
-const ResizerOutput = () => {
-
-
+const ResizerOutput = (props) => {
 
   return (
-    <div>
-
+    <div className="container">
+        <img className="children" src={props.newImageURI} alt="New Resized Image" />
     </div>
   );
 };

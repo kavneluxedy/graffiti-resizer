@@ -1,175 +1,69 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Container } from "react-bootstrap";
 import SVGComponent1 from "../assets/img/svg/SVGComponent1";
 import SVGComponent2 from "../assets/img/svg/SVGComponent2";
+import ThemeContext from "./Provider/ThemeContext";
+import FormatChoiceContext from "./Provider/FormatChoiceContext";
 
 const FormatChoice = () => {
-  const [largeClicked, setLargeClicked] = useState("true");
-  const [tallClicked, setTallClicked] = useState("false");
-  const [squareClicked, setSquareClicked] = useState("false");
-  const [resetClicked, setResetClicked] = useState(false);
+  const {theme, updateTheme} = useContext(ThemeContext);
+  const {chosenFormat, updateChosenFormat} = useContext(FormatChoiceContext);
 
-  const [choice1200, setChoice1200] = useState("true");
-  const [choice800, setChoice800] = useState("false");
-  const [choice400, setChoice400] = useState("false");
-  const [choice80, setChoice80] = useState("false");
-
-  const handleLargeClick = (e) => {
+  const handleChosenFormat = (e, choice) => {
     e.preventDefault();
-    largeClicked ? setTallClicked("hidden") : setLargeClicked("active");
-    tallClicked ? setSquareClicked("hidden") : setTallClicked("active");
-  };
-
-  const handleTallClick = (e) => {
-    e.preventDefault();
-    tallClicked ? setLargeClicked("hidden") : setTallClicked("active");
-    tallClicked ? setSquareClicked("hidden") : setTallClicked("active");
-  };
-
-  const handleSquareClick = (e) => {
-    e.preventDefault();
-    squareClicked ? setLargeClicked("hidden") : setSquareClicked("active");
-    squareClicked ? setTallClicked("hidden") : setSquareClicked("active");
-  };
-
-  const handleResetClick = (e) => {
-    e.preventDefault();
-    resetClicked ? setLargeClicked("hidden") : setLargeClicked("visible");
-    resetClicked ? setTallClicked("hidden") : setTallClicked("visible");
-    resetClicked ? setSquareClicked("hidden") : setSquareClicked("visible");
-  };
-
-  const handleChoice = (e, size) => {
-    e.preventDefault();
-    switch (size) {
-      case "1200":
-        choice1200 ? setChoice1200("active") : setChoice1200("active");
-        choice800 ? setChoice800("false") : console.log();
-        choice400 ? setChoice400("false") : console.log();
-        choice80 ? setChoice80("false") : console.log();
-        break;
-
-      case "800":
-        choice800 ? setChoice800("active") : setChoice800("active");
-        choice1200 ? setChoice1200("false") : console.log();
-        choice400 ? setChoice400("false") : console.log();
-        choice80 ? setChoice80("false") : console.log();
-        console.log("800");
-        break;
-
-      case "400":
-        choice400 ? setChoice400("active") : setChoice400("active");
-        choice1200 ? setChoice1200("false") : console.log();
-        choice800 ? setChoice800("false") : console.log();
-        choice80 ? setChoice80("false") : console.log();
-        console.log("400");
-        break;
-
-      case "80":
-        choice80 ? setChoice80("active") : setChoice80("active");
-        choice1200 ? setChoice1200("false") : console.log();
-        choice800 ? setChoice800("false") : console.log();
-        choice400 ? setChoice400("false") : console.log();
-        console.log("80");
-        break;
-
-      default:
-        return "Default (switch case)";
-    }
-  };
-
-  // const DisplaySizeChoices = () => {
-  //   return (
-  //     <div>
-  //       <div className="container">
-  //         <Link to="/resizer-options">Options</Link>
-
-  //         <div className="col" onClick={(e) => handleChoice(e, "1200")}>
-  //           <Link to="resizer-options">
-  //             <SVGComponent1
-  //               className={choice1200 || "visible"}
-  //               name="1200"
-  //               width="250px"
-  //               height="250px"
-  //             />
-  //           </Link>
-  //         </div>
-
-  //         <div className="col">
-  //           <a href="#">
-  //             <SVGComponent2
-  //               className={choice800 || "visible"}
-  //               value="800"
-  //               width="250px"
-  //               height="250px"
-  //               onClick={(e) => handleChoice(e, "800")}
-  //             />
-  //           </a>
-  //         </div>
-
-  //         <div className="col">
-  //           <a href="#">
-  //             <SVGComponent1
-  //               className={choice400 || "visible"}
-  //               value="400"
-  //               width="250px"
-  //               height="250px"
-  //               onClick={(e) => handleChoice(e, "400")}
-  //             />
-  //           </a>
-  //         </div>
-
-  //         <div className="col">
-  //           <a href="#">
-  //             <SVGComponent1
-  //               className={choice80 || "visible"}
-  //               value="80"
-  //               width="250px"
-  //               height="250px"
-  //               onClick={(e) => handleChoice(e, "80")}
-  //             />
-  //           </a>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // };
+    updateChosenFormat(choice);
+    console.log(choice, chosenFormat);
+  }
 
   return (
     <div className="container">
 
-      <div className="container-title">
+      <div className="page-title">
         <h3>Choisissez le format d'image que vous souhaitez obtenir </h3>
       </div>
-
-      <div className="children">
-
-        <button
-          className={resetClicked || "visible"}
+      
+        {/* <button
+          className={resetClicked || 'visible'}
           onClick={handleResetClick}
-        >
+          >
           Reset
-        </button>
-        <SVGComponent1
-          className={largeClicked || "visible"}
-          width="250px"
-          height="250px"
-          onClick={(e) => handleLargeClick(e)}
-        />
+        </button> */}
 
+      {/* <div className="choice-button">
+        <button className="button">Landscape</button>
+        <button className="button">Portrait</button>
+        <button className="button">Square</button>
+      </div> */}
+
+      <div className="choice">
+        <button className="button">Landscape</button>
+        <SVGComponent1
+          // className={largeClicked || "visible"}
+          width="220px"
+          height="220px"
+          // onClick={(e) => handleLargeClick(e, 'lanscape')}
+        />
+      </div>
+
+
+      <div className="choice">
+        <button className="button">Portrait</button>
         <SVGComponent2
-          className={tallClicked || "visible"}
-          width="250px"
-          height="250px"
-          onClick={(e) => handleTallClick(e)}
-        />
+          // className={tallClicked || "visible"}
+          width="220px"
+          height="220px"
+          // onClick={(e) => handleTallClick(e, 'portrait')}
+          />  
+      </div>
 
+      <div className="choice">
+        <button className="button">Square</button>
         <SVGComponent1
-          className={squareClicked || "visible"}
-          width="250px"
-          height="250px"
-          onClick={(e) => handleSquareClick(e)}
-        />
+          // className={squareClicked || "visible"}
+          width="220px"
+          height="220px"
+          // onClick={(e) => handleSquareClick(e, 'square')}
+          />
       </div>
 
     </div>
