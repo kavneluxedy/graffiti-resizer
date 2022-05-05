@@ -1,47 +1,37 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Header from "./components/Header";
-import FileResizer from "react-image-file-resizer";
-import { useState } from "react";
+import { StrictMode, useState } from "react";
+import Header from "./components/templates/Header";
+import Home from "./components/Home";
 
 const App = () => {
+	const [src, setSrc] = useState("URI's src Init");
 
-  const [newImageURI, setNewImageURI] = useState(undefined);
-  const [newWidth, setNewWidth] = useState(250);
+	const [newWidth, setNewWidth] = useState(500);
+	const [size, setSize] = useState("Init Size");
 
-  const imageChangedHandler = (e) => {
-    var fileInput = false;
+	return (
+		<StrictMode>
+			<div className="container">
+				<Header />
 
-    if (e.target.files[0]) {
-      fileInput = true; // ? If an image has been downloaded by user
+				{/* 
+        <Outlet
+        context={{
+          src: src,
+          setSrc: setSrc,
+          newWidth: newWidth,
+          setNewWidth: setNewWidth,
+          size: size,
+          setSize: setSize,
+        }}
+        />
+      */}
 
-      if (fileInput) {
-        try {
-          FileResizer.imageFileResizer(
-            e.target.files[0], // * file
-            newWidth, // * maxWidth
-            e.target.files[0].height, // * maxHeight
-            "JPEG", // * compressFormat
-            100, // * quality
-            0, // * rotation
-            (uri) => {
-              // * responseUriFunc
-              setNewImageURI(uri);
-            },
-            "base64" // * outputType
-          );
-        } catch (err) {
-          console.log(err);
-        }
-      }
-    }
-  };
-
-  return (
-    <div className="App">
-      <Header />
-    </div>
-  );
-}
+				<Home />
+			</div>
+		</StrictMode>
+	);
+};
 
 export default App;

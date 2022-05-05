@@ -1,8 +1,6 @@
 import * as ReactDOMClient from 'react-dom/client';
-import './index.css';
 import RouterBasic from './utils/RouterBasic';
 import reportWebVitals from './reportWebVitals';
-import ThemeContext from './components/Provider/ThemeContext';
 
 const container = document.getElementById('root');
 const root = ReactDOMClient.createRoot(container);

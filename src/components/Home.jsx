@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FileInput from './FileInput';
 
 const Home = () => {
-    return (
-        <div>
-            !!! HOME !!!
-        </div>
-    );
+  return (
+    <div className='container'>
+      <FileInput />
+    </div>
+  );
 }
 
 export default Home;

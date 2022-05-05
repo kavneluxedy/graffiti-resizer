@@ -1,20 +1,22 @@
-.App {
+html, body {
   width: 100%;
   height: 100%;
-  font-family: "Tahoma", sans-serif;
+}
+
+#root {
+  font-family: "Verdana", sans-serif;
   display: flex;
   flex-direction: column;
 }
 
 .container {
   min-width: 100%;
-  max-height: max-content;
+  position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  margin: 1% 0 1% 0%;
 }
 
 .page-title {
@@ -23,38 +25,23 @@
 }
 
 .header {
-  max-width: 100%;
-  padding: 1%;
-  margin-bottom: 2px;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 4px;
   background: linear-gradient(to top left, #370073 10%, #222 90%);
   color: #ffffffbf;
 }
 
 .choice {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 200px;
-  min-height: 200px;
-  max-width: 220px;
-  max-height: 220px;
-}
-
-.landscapeChoice1200 {
-  max-width: 1200px;
-}
-
-.landscapeChoice800 {
-  max-width: 1200px;
-}
-
-.landscapeChoice400 {
-  max-width: 1200px;
-}
-
-.landscapeChoice80 {
-  max-width: 1200px;
+  box-sizing: border-box;
+  border-radius: calc(100% / 16);
 }
 
 .button {
@@ -67,6 +54,7 @@
   padding: 10px;
   border-radius: 15px;
   background: linear-gradient(to top left, #370073, purple);
+  color: #ffffffb8;
   border: none;
 }
 
@@ -80,69 +68,11 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
-
-
-
-
-
-
-/* #root {
-  color: #142d52;
-  display: flex;
-  flex-direction: column;
-}
-
-.header {
+.finalChoice {
+  position: fixed;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: rel;
-  top: 0%;
-  max-width: 100%;
-  margin-bottom: 2px;
-  border: 3px solid red;
+  height: 100%;
 }
-
-.light {
-  background-color: white !important;
-  color: #282c34 !important;
-}
-
-.dark {
-  background-color: #282c34 !important;
-  color: white !important;
-}
-
-.theme button, input {
-  background-color: black;
-  color: yellowgreen;
-}
-
-.container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid blue;
-  margin: 2px;
-}
-
-
-.container-title {
-  width: 100%;
-  display: flex;
-  position: relative;
-  padding: 100px;
-
-  min-height: 500px;
-}
-
-.children {
-  display: flex;
-  position: relative;
-} */
