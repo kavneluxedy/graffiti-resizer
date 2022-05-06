@@ -2,17 +2,21 @@ import React, { useLayoutEffect, useState } from "react";
 import FileResizer from "react-image-file-resizer";
 import { useNavigate } from "react-router-dom";
 import Choice from "./Choice";
+import NewImageContext from "../utils/NewImageContext";
+import SizeChoice from "./SizeChoice";
 
 const FileInput = () => {
 	const navigate = useNavigate();
 	const [src, setSrc] = useState();
-	const [copyEvent, setCopyEvent] = useState(["Event Obj"]);
+	const [copyEvent, setCopyEvent] = useState({
+		customEvent: "Initial Event Obj",
+	});
 
 	const onChange = (e) => {
 		const File = e.target.files[0];
 		if (File) {
 			e.preventDefault();
-			setCopyEvent([{ ...e }]);
+			setCopyEvent({ customEvent: { ...e } });
 			try {
 				FileResizer.imageFileResizer(
 					e.target.files[0], // * file
@@ -44,26 +48,23 @@ const FileInput = () => {
 		if (!src) {
 			setSrc(localStorage.getItem("src"));
 		}
-		if (localStorage.getItem("copyEvent") != copyEvent) {
-			localStorage.clear();
-			localStorage.setItem("copyEvent", copyEvent);
-		}
-		// console.log(copyEvent[0].currentTarget);
+		localStorage.clear();
+		localStorage.setItem("copyEvent", copyEvent);
 	});
 
 	return (
 		<div className="container">
-			<label>
-				We need your image to continue
-				<input onChange={(e) => onChange(e)} type="file" />
-			</label>
+			<NewImageContext.Provider value={[src, setSrc, copyEvent, setCopyEvent]}>
 
-			<Choice
-				src={src}
-				setSrc={setSrc}
-				copyEvent={copyEvent}
-				setCopyEvent={setCopyEvent}
-			/>
+				<label>
+					We need your image to continue
+					<input onChange={(e) => onChange(e)} type="file" />
+				</label>
+
+				<Choice src={src} />
+				<SizeChoice />
+				
+			</NewImageContext.Provider>
 		</div>
 	);
 };

@@ -14,20 +14,6 @@ const App = () => {
 		<StrictMode>
 			<div className="container">
 				<Header />
-
-				{/* 
-        <Outlet
-        context={{
-          src: src,
-          setSrc: setSrc,
-          newWidth: newWidth,
-          setNewWidth: setNewWidth,
-          size: size,
-          setSize: setSize,
-        }}
-        />
-      */}
-
 				<Home />
 			</div>
 		</StrictMode>
