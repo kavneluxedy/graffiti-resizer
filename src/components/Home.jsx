@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import FileInput from './FileInput';
+import App from '../App';
 
 const Home = () => {
   return (
     <div className='container'>
-      <FileInput />
+      <App />
     </div>
   );
 }
