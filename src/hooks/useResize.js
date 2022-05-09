@@ -1,95 +1,58 @@
-import { useEffect, useState } from "react";
-import download from "downloadjs";
+import { useEffect, useState, useRef } from "react";
 import FileResizer from "react-image-file-resizer";
 
 const useResize = () => {
-  const [file, setFile] = useState(null);
-  const [width, setWidth] = useState(null);
-  const [heigth, setHeight] = useState(null);
-  const [originalData, setOriginalData] = useState(null);
-  const [newData, setNewData] = useState(null);
-  const [originalImg, setOriginalImg] = useState(null);
-  const [modifiedImg, setModifiedImg] = useState(null);
-  const [loading, setLoading] = useState(null);
-  const [error, setError] = useState(null);
+	const fileInput = useRef();
+	const [width, setWidth] = useState(null);
+	const [heigth, setHeigth] = useState(null);
+	const [modifiedImg, setModifiedImg] = useState(null);
+	const [loading, setLoading] = useState(null);
+	const [error, setError] = useState(null);
 
-  useEffect(() => {
-    makeOriginal(file);
-    resize(file, width, heigth);
-}, [file, width, heigth]);
+	useEffect(() => {
+		resize(fileInput.current, width, heigth);
+	}, [fileInput, width, heigth]);
 
-  function makeOriginal(file) {
-    if (file) {
-      setLoading(true);
-      try {
-        FileResizer.imageFileResizer(
-          file, // * file
-          file.width, // * maxWidth in pixel
-          file.heigth, // * maxHeight in pixel
-          file.type, // * compressFormat
-          100, // * quality
-          0, // * rotation
-          (uri) => {
-            // * responseUriFunction
-            if (uri.length != 0) {
-              let x = encodeURI(uri);
-              let url = decodeURI(x);
-              setOriginalImg(url);
-              setOriginalData({originalSize: parseInt(file.size / 1024)}); // * Conversion de l'octet en Kilo octet
-            }
-          },
-          "base64" // * outputType
-        );
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-        setError(false);
-      }
-    } else {
-      console.log("Please choose one file");
-    }
-  }
+	async function resize(file, width, heigth) { // ! USE MEMO / CALLBACK
+		setLoading(true);
+		try {
+			FileResizer.imageFileResizer(
+				file, // * file
+				width, // * maxWidth in pixel
+				heigth, // * maxHeight in pixel
+				file.type, // * compressFormat
+				100, // * quality
+				0, // * rotation
+				(uri) => {
+					setModifiedImg({ src: uri });
+					if (localStorage) {
+						localStorage.clear();
+					}
+					localStorage.setItem("src", uri);
+				},
+				"base64" // * outputType
+			);
+			var type = fileInput.current.type.replace("image/", ""); // ! TO DO / CHANGE FILE INPUT
+			// var prefix = fileInput.current.name.replace(/.jpg/ || /.jpeg/ || /.png/ ||
+			// /.gif/, ""); var tmp = fileInput.current.files[0].name.indexOf("."); var
+			// suffix = fileInput.current.files[0].name.substr(tmp); var fileName = prefix +
+			// "_" + "UserChoice" + suffix;
+		} catch (err) {
+			setError(err);
+		} finally {
+			setLoading(false);
+			setError(false);
+		}
+	}
 
-  function resize(originalImg, width, heigth) {
-    setLoading(true);
-    try {
-      FileResizer.imageFileResizer(
-        originalImg, // * file
-        width, // * maxWidth in pixel
-        heigth, // * maxHeight in pixel
-        file.type, // * compressFormat
-        100, // * quality
-        0, // * rotation
-        (uri) => {
-          if (uri.length != 0) {
-            let x = encodeURI(uri);
-            let url = decodeURI(x);
-            setModifiedImg(url);
-          }
-        },
-        "base64" // * outputType
-      );
-      download(modifiedImg, fileName, originalImg.type);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
-      setError(false);
-    }
-  }
-
-  return {
-    setFile,
-    setWidth,
-    setHeight,
-    originalData,
-    setOriginalData,
-    originalImg,
-    modifiedImg,
-    loading,
-    error,
-  };
+	return {
+		setWidth,
+		setHeigth,
+		modifiedImg,
+		loading,
+		error,
+		fileInput,
+	};
 };
 
 export default useResize;
