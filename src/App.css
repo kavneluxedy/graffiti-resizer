@@ -13,9 +13,9 @@ body,
 	font-family: "Verdana", sans-serif;
 }
 
-
 .header {
 	min-width: 100%;
+	min-height: 50px;
 	max-height: 80px;
 	position: sticky;
 	top: 0;
@@ -52,18 +52,6 @@ body,
 	text-align: center;
 }
 
-/* .choice {
-	width: 100%;
-	position: relative;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	box-sizing: border-box;
-	overflow: hidden;
-} */
-
 .choiceButton {
 	box-sizing: border-box;
 	width: 250px;
@@ -93,12 +81,10 @@ body,
 	max-width: 300px;
 }
 
-
 #resizedImg {
 	position: relative;
 	max-width: 100%;
 }
-
 
 .loadingAnimation {
 	background: pink;

@@ -45,13 +45,7 @@ const useOriginal = () => {
 		}
 	}
 
-	return {
-		file,
-		setFile,
-		originalImg,
-		loading,
-		error,
-	};
+	return { file, setFile, originalImg, loading, error };
 };
 
 export default useOriginal;

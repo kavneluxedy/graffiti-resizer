@@ -27,7 +27,7 @@ const Header = () => {
 	return (
 		<div className="header">
 			<Navbar className="header" variant="dark">
-				<Navbar.Brand href="/home">
+				<Navbar.Brand href="/">
 					<img
 						src={coffee}
 						width="30"
@@ -38,9 +38,8 @@ const Header = () => {
 				</Navbar.Brand>
 
 				<Nav fill className="me-auto">
-					<Nav.Link href="/home">Accueil</Nav.Link>
-					<Nav.Link href="/choice">Redimensionner une image</Nav.Link>
-					<Nav.Link href="/output">Votre nouvelle image</Nav.Link>
+					<Nav.Link href="/">Accueil</Nav.Link>
+					<Nav.Link href="/app">Redimensionner une image</Nav.Link>
 					<Nav.Link href="/help">Besoin d'aide ?</Nav.Link>
 				</Nav>
 
