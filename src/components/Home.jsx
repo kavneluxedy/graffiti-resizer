@@ -1,14 +1,19 @@
-import React, { useRef, useState } from "react";
-import Header from "./templates/Header";
+import React from "react";
+import SvgHomeTitle from "../assets/img/svg/SvgHomeTitle";
+import SvgHomeAuthor from "../assets/img/svg/SvgHomeAuthor";
 
 const Home = () => {
-	const enter = useRef();
-
 	return (
 		<div className="container">
-			<Header />
-			<a href="/app" className="enter">
-				<span ref={enter}>GO</span>
+			<a href="app">
+				<div className="home">
+					<div className="title">
+						<SvgHomeTitle />
+					</div>
+					<div className="author">
+						<SvgHomeAuthor />
+					</div>
+				</div>
 			</a>
 		</div>
 	);

@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+import { app, BrowserWindow } from "electron";
 
 function createWindow() {
 	// ? Create the browser window.
@@ -11,7 +11,7 @@ function createWindow() {
 	});
 
 	// ?load the index.html from a url
-	win.loadURL("http://localhost:3000");
+	win.loadURL("file://public/index.html");
 
 	// ? Open the DevTools.
 	// win.webContents.openDevTools();

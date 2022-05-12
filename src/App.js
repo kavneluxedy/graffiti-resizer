@@ -1,28 +1,28 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { StrictMode, useEffect, useRef } from "react";
+import { StrictMode, useEffect, useLayoutEffect } from "react";
 import useOriginal from "./hooks/useOriginal";
 import useResize from "./hooks/useResize";
 import useDownload from "./hooks/useDownload";
 import Header from "./components/templates/Header";
 
 const App = () => {
-	const landscapeRef = useRef();
-	const { file, setFile, originalImg } = useOriginal();
-	const {
-		setWidth,
-		setHeigth,
-		modifiedImg,
-		loading,
-		error,
-		fileInput,
-		originalImgRef,
-	} = useResize();
+	const { file, setFile, originalImg, originalImgRef } = useOriginal();
+	const { setWidth, setHeigth, modifiedImg, fileInput, loading, error } =
+		useResize();
 	const { downloadHandler } = useDownload();
 
-	const onClick = (width = "auto", heigth = "auto") => {
+	const onClick = (width = "auto", height = "auto") => {
 		setWidth(width);
-		setHeigth(heigth);
+		setHeigth(height);
+	};
+
+	const detectRatio = (width, height) => {
+		if (width > height) {
+			console.log(width, height, "paysage");
+		} else if (height > width) {
+			console.log("Portrait");
+		}
 	};
 
 	useEffect(() => {
@@ -35,9 +35,15 @@ const App = () => {
 		}
 	}, [modifiedImg]);
 
+	useLayoutEffect(() => {
+		if (originalImgRef.current) {
+			detectRatio(originalImgRef.current.width, originalImgRef.current.height);
+		}
+	}, [file]);
+
 	const LandscapeChoice = () => {
 		return (
-			<div className="container" ref={landscapeRef}>
+			<div className="container">
 				{originalImg && (
 					<div className="choice" value="landscape1920">
 						<a href="#" onClick={(e) => onClick(e.target.attributes[0].value)}>
@@ -109,16 +115,11 @@ const App = () => {
 
 	const PortraitChoice = () => {
 		return (
-			<div className="container" ref={PortraitRef}>
+			<div className="container">
 				{originalImg && (
-					<div className="choice">
-						<a
-							// ! ATTRIBUTES[0] MUST BE A STRING (Width in pixel)
-
-							href="#"
-							onClick={(e) => onClick(e.target.attributes[0].textContent)}
-						>
-							<button value="1080" className="choiceButton">
+					<div className="container">
+						<a href="#" onClick={(e) => onClick(e.target.attributes[0].value)}>
+							<button value="1080" className="choiceButton p1080">
 								{/* <img src={originalImg.src} width="50" /> */}
 								Portrait | 1080 pixels
 							</button>
@@ -129,7 +130,7 @@ const App = () => {
 				{originalImg && (
 					<div className="container">
 						<a href="#" onClick={(e) => onClick(e.target.attributes[0].value)}>
-							<button value="800" className="choiceButton">
+							<button value="800" className="choiceButton p800">
 								{/* <img src={originalImg.src} width="50" /> */}
 								Portrait | 800 pixels
 							</button>
@@ -140,7 +141,7 @@ const App = () => {
 				{originalImg && (
 					<div className="container">
 						<a href="#" onClick={(e) => onClick(e.target.attributes[0].value)}>
-							<button value="400" className="choiceButton">
+							<button value="400" className="choiceButton p400">
 								{/* <img src={originalImg.src} width="50" /> */}
 								Portrait | 400 pixels
 							</button>
@@ -151,7 +152,7 @@ const App = () => {
 				{originalImg && (
 					<div className="container">
 						<a href="#" onClick={(e) => onClick(e.target.attributes[0].value)}>
-							<button value="80" className="choiceButton">
+							<button value="80" className="choiceButton p80">
 								{/* <img src={originalImg.src} width="50" /> */}
 								Portrait Miniature | 80 pixels
 							</button>
@@ -164,7 +165,7 @@ const App = () => {
 
 	const SquareChoice = () => {
 		return (
-			<div className="container" ref={SquareRef}>
+			<div className="container">
 				{originalImg && (
 					<div className="choice">
 						<a
@@ -230,17 +231,15 @@ const App = () => {
 		<StrictMode>
 			<Header />
 			<div className="container">
-				<div className="FormatChoice">
-					<LandscapeChoice />
-					{/* <PortraitChoice />
-	<SquareChoice /> */}
-				</div>
+				<LandscapeChoice />
+				<PortraitChoice />
+				{/* <SquareChoice /> */}
 
 				<div className="container">
 					<input
-						onChange={(e) => setFile(e.target.files[0])}
 						type="file"
 						ref={fileInput}
+						onChange={(e) => setFile(e.target.files[0])}
 					/>
 				</div>
 
@@ -264,9 +263,13 @@ const App = () => {
 					<div className="container">
 						<img
 							className="originalImg"
-							style={{ width: 500 }}
 							id="originalImg"
 							src={originalImg.src}
+						/>
+						<img
+							src={originalImg.src}
+							// style={{ display: "none" }} // ! TEST
+							onLoad={(e) => {}}
 							ref={originalImgRef}
 						/>
 						<div>

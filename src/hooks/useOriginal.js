@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FileResizer from "react-image-file-resizer";
 
 const useOriginal = () => {
+	const originalImgRef = useRef();
 	const [file, setFile] = useState(null);
 	const [originalImg, setOriginalImg] = useState(null);
 	const [loading, setLoading] = useState(null);
@@ -18,7 +19,7 @@ const useOriginal = () => {
 				FileResizer.imageFileResizer(
 					file, // * file
 					file.width, // * maxWidth in pixel
-					file.heigth, // * maxHeight in pixel
+					file.height, // * maxHeight in pixel
 					file.type, // * compressFormat
 					100, // * quality
 					0, // * rotation
@@ -45,7 +46,15 @@ const useOriginal = () => {
 		}
 	}
 
-	return { file, setFile, originalImg, loading, error };
+	return {
+		file,
+		setFile,
+		originalImg,
+		setOriginalImg,
+		originalImgRef,
+		loading,
+		error,
+	};
 };
 
 export default useOriginal;

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Graffiti Resize",
+  "name": "React Image Resize App for Graffiti's Consumers",
   "icons": [
     {
       "src": "favicon.ico",
