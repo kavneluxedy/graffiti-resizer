@@ -1,12 +1,6 @@
-import * as ReactDOMClient from 'react-dom/client';
-import RouterBasic from './utils/RouterBasic';
-import reportWebVitals from './reportWebVitals';
+import RouterBasic from "./utils/RouterBasic";
+const ReactDOM = require("react-dom/client");
 
-const container = document.getElementById('root');
-const root = ReactDOMClient.createRoot(container);
+const container = document.getElementById("root");
+const root = ReactDOM.createRoot(container);
 root.render(<RouterBasic />);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
