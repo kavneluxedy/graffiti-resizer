@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require("electron");
-const { ipcMain } = require("electron/main");
 const isDev = require("electron-is-dev");
+//  const { ipcMain } = require("electron/main");
 
 function createWindow() {
 	// Create the browser window.
@@ -15,7 +15,7 @@ function createWindow() {
 	// Load the index.html from an url
 	isDev
 		? win.loadURL("http://localhost:3000")
-		: win.loadFile("./public/index.html");
+		: win.loadFile(__dirname, 'public', 'index.html');
 
 	// Open the DevTools.
 	win.webContents.openDevTools();

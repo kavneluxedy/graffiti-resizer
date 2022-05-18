@@ -1,11 +1,12 @@
 import React from "react";
 import SvgHomeTitle from "../assets/img/svg/SvgHomeTitle";
 import SvgHomeAuthor from "../assets/img/svg/SvgHomeAuthor";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 	return (
 		<div className="container">
-			<a href="app">
+			<Link to="app">
 				<div className="home">
 					<div className="title">
 						<SvgHomeTitle />
@@ -14,7 +15,7 @@ const Home = () => {
 						<SvgHomeAuthor />
 					</div>
 				</div>
-			</a>
+			</Link>
 		</div>
 	);
 };
