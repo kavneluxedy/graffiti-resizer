@@ -7,42 +7,42 @@ const { webpack } = require("webpack");
 const defaultInclude = path.resolve(__dirname, "src");
 
 module.exports = {
-	mode: "production",
-	module: {
-		rules: [
-			{
-				test: /\.css$/,
-				use: "css-loader",
-				include: defaultInclude,
-			},
-			{
-				test: /\.jsx?$/,
-				use: [{ loader: "babel-loader", loader: "@babel/preset-react" }],
-				include: defaultInclude,
-			},
-			{
-				test: /\.(jpe?g|png|gif)$/,
-				use: [{ loader: "file-loader?name=img/[name]__[hash:base64:5].[ext]" }],
-				include: defaultInclude,
-			},
-			{
-				test: /\.(eot|svg|ttf|woff|woff2)$/,
-				use: [
-					{ loader: "file-loader?name=font/[name]__[hash:base64:5].[ext]" },
-				],
-				include: defaultInclude,
-			},
-		],
-	},
-	output: {
-		path: path.resolve(__dirname, "dist"),
-		filename: "bundle.js",
-	},
-	target: "electron-renderer",
-	plugins: [
-		new HtmlWebpackPlugin(),
-		// new webpack.DefinePlugin({
-		// 	"process.env.NODE_ENV": JSON.stringify("production"),
-		// }),
-	],
+  mode: "production",
+  entry: path.resolve(__dirname, "./src/App.js"),
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "App.bundle.js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: "css-loader",
+        include: defaultInclude,
+      },
+      {
+        test: /\.jsx?$/,
+        loader: "babel-loader",
+        include: defaultInclude,
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        use: [{ loader: "file-loader?name=img/[name]__[hash:base64:5].[ext]" }],
+        include: defaultInclude,
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: [
+          { loader: "file-loader?name=font/[name]__[hash:base64:5].[ext]" },
+        ],
+        include: defaultInclude,
+      },
+    ],
+  },
+  target: "electron-renderer",
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
 };

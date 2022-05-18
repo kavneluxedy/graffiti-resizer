@@ -1,27 +1,27 @@
 const { app, BrowserWindow } = require("electron");
-const { ipcMain } = require("electron/main");
 const isDev = require("electron-is-dev");
+// const { ipcMain } = require("electron/main");
 
 function createWindow() {
-	// Create the browser window.
-	const win = new BrowserWindow({
-		width: 1280,
-		height: 800,
-		webPreferences: {
-			nodeIntegration: true,
-		},
-	});
+  // Create the browser window.
+  const win = new BrowserWindow({
+    width: 1280,
+    height: 800,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
 
-	// Load the index.html from an url
-	isDev
-		? win.loadURL("http://localhost:3000")
-		: win.loadFile("./public/index.html");
+  // Load the index.html from an url
+  isDev
+    ? win.loadURL("http://localhost:3000")
+    : win.loadFile("./public/index.html");
 
-	// Open the DevTools.
-	win.webContents.openDevTools();
+  // Open the DevTools.
+  win.webContents.openDevTools();
 
-	// Debug
-	console.log(win);
+  // Debug
+  console.log(win);
 }
 
 // This method will be called when Electron has finished
@@ -33,20 +33,19 @@ app.whenReady().then(createWindow);
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
-	if (process.platform !== "darwin") {
-		app.quit();
-	}
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
 });
 
 app.on("activate", () => {
-	// On macOS it's common to re-create a window in the app when the
-	// dock icon is clicked and there are no other windows open.
+  // On macOS it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
 
-	if (BrowserWindow.getAllWindows().length === 0) {
-		createWindow();
-	}
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
 });
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-// ! Put Main Process Here !!!
