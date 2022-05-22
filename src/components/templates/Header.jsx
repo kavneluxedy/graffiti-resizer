@@ -3,53 +3,12 @@ import "../../App.css";
 import "../../Menu.css";
 import { Link } from "react-router-dom";
 import SvgTitle from "../../assets/img/svg/SvgTitle";
+import SvgAuthor from "../../assets/img/svg/SvgAuthor";
 
 const Header = () => {
   return (
     <>
       <div className="background"></div>
-
-      <input id="menu__toggle" type="checkbox" />
-      
-      <label class="menu__btn" for="menu__toggle">
-        <span></span>
-      </label>
-
-      <ul class="menu__box">
-        <div className="li-separate" />
-
-        <li>
-          <Link class="menu__item" to="/home">
-            Accueil
-          </Link>
-        </li>
-
-        <div className="li-separate" />
-
-        <li>
-          <Link class="menu__item" to="/app">
-            Redimensionner une image
-          </Link>
-        </li>
-
-        <div className="li-separate" />
-
-        <li>
-          <a class="menu__item" href="/about">
-            A propos de nous
-          </a>
-        </li>
-
-        <div className="li-separate" />
-
-        <li>
-          <a class="menu__item" href="/help">
-            Besoin d'aide ?
-          </a>
-        </li>
-
-        <div className="li-separate" />
-      </ul>
 
       <div className="nav-wrapper">
         <div className="nav-logo">
@@ -57,6 +16,49 @@ const Header = () => {
             <SvgTitle />
           </Link>
         </div>
+        <input id="menu__toggle" type="checkbox" />
+
+        <label htmlFor="menu__toggle" className="menu__btn">
+          <span></span>
+        </label>
+
+        <ul className="menu__box">
+          <li>
+            <Link className="menu__item" to="/home">
+              Accueil
+            </Link>
+          </li>
+
+          <div className="li-separate"></div>
+
+          <li>
+            <Link className="menu__item" to="/app">
+              Redimensionner une autre image
+            </Link>
+          </li>
+
+          <div className="li-separate"></div>
+
+          <li>
+            <Link className="menu__item" to="https://www.graffiti.fr">
+              Aller sur le site de l'agence Graffiti
+            </Link>
+          </li>
+
+          <div className="li-separate"></div>
+
+          <li>
+            <Link className="menu__item" to="/help">
+              Obtenir de l'aide
+            </Link>
+          </li>
+
+          <div className="li-separate"></div>
+
+          <div className="menu-item">
+            <SvgAuthor />
+          </div>
+        </ul>
       </div>
     </>
   );
