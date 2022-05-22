@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const SvgHomeAuthor = () => (
+const SvgAuthor = () => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		width="150"
@@ -33,4 +33,4 @@ const SvgHomeAuthor = () => (
 	</svg>
 );
 
-export default SvgHomeAuthor;
+export default SvgAuthor;

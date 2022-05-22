@@ -1,13 +1,12 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import Header from "./templates/Header";
 
 const Help = () => {
 	return (
-		<Container>
+		<div className="container">
 			<Header />
 			NEED HELP !
-		</Container>
+		</div>
 	);
 };
 

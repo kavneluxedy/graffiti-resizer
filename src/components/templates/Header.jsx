@@ -1,69 +1,65 @@
-import React, { useState } from "react";
-import { Container, Navbar, Nav, Offcanvas, Button } from "react-bootstrap";
+import React from "react";
+import "../../App.css";
+import "../../Menu.css";
 import { Link } from "react-router-dom";
-import SvgHome from "assets/img/svg/SvgHome";
+import SvgTitle from "../../assets/img/svg/SvgTitle";
 
 const Header = () => {
-	const [theme, setTheme] = useState("Light");
+  return (
+    <>
+      <div className="background"></div>
 
-	const handleTheme = () => {
-		switch (theme) {
-			case "Light":
-				setTheme("Dark");
-				document.querySelector("#root").style.backgroundColor = "#6a54b3";
-				document.querySelector("#root").style.color = "#555";
-				break;
+      <input id="menu__toggle" type="checkbox" />
+      
+      <label class="menu__btn" for="menu__toggle">
+        <span></span>
+      </label>
 
-			case "Dark":
-				setTheme("Light");
-				document.querySelector("#root").style.backgroundColor = "#062634";
-				document.querySelector("#root").style.color = "#22406e";
-				break;
+      <ul class="menu__box">
+        <div className="li-separate" />
 
-			default:
-				setTheme("Light");
-		}
-	};
+        <li>
+          <Link class="menu__item" to="/home">
+            Accueil
+          </Link>
+        </li>
 
-	return (
-		<Container>
-			{[false].map((expand) => (
-				<Navbar key={expand} expand={expand} className="mb-3" fixed="top">
-					<Navbar.Brand href="/home">
-						<SvgHome width="150px" />
-					</Navbar.Brand>
-					<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-					<Navbar.Offcanvas
-						id={`offcanvasNavbar-expand-${expand}`}
-						aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-						placement="end"
-					>
-						<Offcanvas.Header
-							closeButton
-							style={{ backgroundColor: "#7a04c5" }}
-						>
-							<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-								Graffiti Resize
-							</Offcanvas.Title>
-						</Offcanvas.Header>
-						<Offcanvas.Body className="burger-menu">
-							<Nav className="justify-content-end flex-grow-1 pe-3">
-								<span>
-									<Link to="/app">Redimensionner une image</Link>
-								</span>
-								<span>
-									<Link to="/about">A propos de nous</Link>
-								</span>
-								<span>
-									<Link to="/help">Besoin d'aide ?</Link>
-								</span>
-							</Nav>
-						</Offcanvas.Body>
-					</Navbar.Offcanvas>
-				</Navbar>
-			))}
-		</Container>
-	);
+        <div className="li-separate" />
+
+        <li>
+          <Link class="menu__item" to="/app">
+            Redimensionner une image
+          </Link>
+        </li>
+
+        <div className="li-separate" />
+
+        <li>
+          <a class="menu__item" href="/about">
+            A propos de nous
+          </a>
+        </li>
+
+        <div className="li-separate" />
+
+        <li>
+          <a class="menu__item" href="/help">
+            Besoin d'aide ?
+          </a>
+        </li>
+
+        <div className="li-separate" />
+      </ul>
+
+      <div className="nav-wrapper">
+        <div className="nav-logo">
+          <Link to="/home">
+            <SvgTitle />
+          </Link>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Header;
