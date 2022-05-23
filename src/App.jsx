@@ -31,23 +31,33 @@ const App = () => {
 	}, [modifiedImg]);
 
 	useLayoutEffect(() => {
+		setFile(file); // ! WIP
+		console.log(file);
 		if (originalImgRef.current) {
 			detectRatio(originalImgRef.current.width, originalImgRef.current.height);
-			console.log(width, height);
 		}
 	}, [file]);
 
 	const fileChangedHandler = (e) => {
 		if (e.target.files[0]) {
+			localStorage.setItem("fileInput", e.target.files[0]);
 			setFile(e.target.files[0]);
-			setTimeout(setResizeFlag(true), 500);
+			setResizeFlag(true);
 		}
 	};
 
 	return (
 		<>
 			<Header />
-			{loading && <div className="loading">{loading}</div>}
+
+			{loading && (
+				<div className="loading">
+					<span>
+						{loading}
+						{/* LOADING ... */}
+					</span>
+				</div>
+			)}
 
 			{!resizeFlag && (
 				<div className="container">
@@ -81,7 +91,12 @@ const App = () => {
 
 			{resizeFlag && originalImg && (
 				<div className="container">
-					<Resize file={file} originalImg={originalImg} />
+					<Resize
+						file={file}
+						originalImg={originalImg}
+						modifiedImg={modifiedImg}
+						fileInput={fileInput}
+					/>
 				</div>
 			)}
 		</>
