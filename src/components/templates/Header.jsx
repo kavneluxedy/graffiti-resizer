@@ -6,62 +6,62 @@ import SvgTitle from "../../assets/img/svg/SvgTitle";
 import SvgAuthor from "../../assets/img/svg/SvgAuthor";
 
 const Header = () => {
-  return (
-    <>
-      <div className="background"></div>
+	return (
+		<>
+			<div className="background"></div>
 
-      <div className="nav-wrapper">
-        <div className="nav-logo">
-          <Link to="/home">
-            <SvgTitle />
-          </Link>
-        </div>
-        <input id="menu__toggle" type="checkbox" />
+			<div className="nav-wrapper">
+				<div className="nav-logo">
+					<Link to="/home">
+						<SvgTitle />
+					</Link>
+				</div>
+				<input id="menu__toggle" type="checkbox" />
 
-        <label htmlFor="menu__toggle" className="menu__btn">
-          <span></span>
-        </label>
+				<label htmlFor="menu__toggle" className="menu__btn">
+					<span></span>
+				</label>
 
-        <ul className="menu__box">
-          <li>
-            <Link className="menu__item" to="/home">
-              Accueil
-            </Link>
-          </li>
+				<ul className="menu__box">
+					<li>
+						<Link className="menu__item" to="/home">
+							Accueil
+						</Link>
+					</li>
 
-          <div className="li-separate"></div>
+					<div className="li-separate"></div>
 
-          <li>
-            <Link className="menu__item" to="/app">
-              Redimensionner une autre image
-            </Link>
-          </li>
+					<li>
+						<Link className="menu__item" to="/app">
+							Redimensionner une autre image
+						</Link>
+					</li>
 
-          <div className="li-separate"></div>
+					<div className="li-separate"></div>
 
-          <li>
-            <Link className="menu__item" to="https://www.graffiti.fr">
-              Aller sur le site de l'agence Graffiti
-            </Link>
-          </li>
+					<li>
+						<Link className="menu__item" to="https://www.graffiti.fr/">
+							Aller sur le site de l'agence Graffiti
+						</Link>
+					</li>
 
-          <div className="li-separate"></div>
+					<div className="li-separate"></div>
 
-          <li>
-            <Link className="menu__item" to="/help">
-              Obtenir de l'aide
-            </Link>
-          </li>
+					<li>
+						<Link className="menu__item" to="/help">
+							Obtenir de l'aide
+						</Link>
+					</li>
 
-          <div className="li-separate"></div>
+					<div className="li-separate"></div>
 
-          <div className="menu-item">
-            <SvgAuthor />
-          </div>
-        </ul>
-      </div>
-    </>
-  );
+					<div className="menu-item">
+						<SvgAuthor />
+					</div>
+				</ul>
+			</div>
+		</>
+	);
 };
 
 export default Header;

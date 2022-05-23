@@ -4,7 +4,7 @@ import FileResizer from "react-image-file-resizer";
 const useResize = () => {
 	const fileInput = useRef();
 	const [width, setWidth] = useState(null);
-	const [height, setHeigth] = useState(null);
+	const [height, setHeight] = useState(null);
 	const [modifiedImg, setModifiedImg] = useState(null);
 	const [loading, setLoading] = useState(null);
 	const [error, setError] = useState(null);
@@ -12,6 +12,7 @@ const useResize = () => {
 	useEffect(() => {
 		if (fileInput.current) {
 			resize(fileInput.current.files[0], width, height);
+			console.log(width, height);
 		}
 	}, [fileInput, width, height]);
 
@@ -27,7 +28,7 @@ const useResize = () => {
 				0, // * rotation
 				(uri) => {
 					setModifiedImg(uri);
-					if (localStorage) {
+					if (localStorage.getItem("src")) {
 						localStorage.clear();
 					}
 					localStorage.setItem("src", uri);
@@ -43,7 +44,7 @@ const useResize = () => {
 	};
 	return {
 		setWidth,
-		setHeigth,
+		setHeight,
 		modifiedImg,
 		setModifiedImg,
 		loading,

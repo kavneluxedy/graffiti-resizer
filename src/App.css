@@ -7,12 +7,12 @@ body {
 	padding: 0;
 	font-size: 24px;
 	font-family:
-		url(./assets/font/NexaBold.ttf),
 		url(./assets/font/NexaLight.ttf),
+		url(./assets/font/NexaBold.ttf),
 		'Nexa Light', 'Nexa Bold', 'Roboto', 'sans-serif';
 	color: whitesmoke;
-
 	background: #062634 url(./assets/img/backgroundImg.png) no-repeat fixed top;
+	text-align: center;
 }
 
 .home {
@@ -27,6 +27,13 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: #062634;
+}
+
+.loading {
+	background-color: rgb(255, 70, 18);
+	width: 50%;
+	top: 10%;
+	margin: auto;
 }
 
 .title {
@@ -56,7 +63,7 @@ body {
 	position: fixed;
 	width: 100%;
 	height: 70px;
-	margin: 0 10%;
+	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 
@@ -82,11 +89,10 @@ a::hover {
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 !important;
+h3 {
+	width: 100% !important;
+	margin: 0;
+	text-align: center;
 }
 
 .container {
@@ -109,25 +115,14 @@ h6 {
 	display: flex;
 	justify-self: center;
 	flex-wrap: wrap;
-	width: 30%;
+	width: 50%;
 	height: max-content;
+	margin: 1% auto;
 	padding: 0;
-	margin: 1% 0;
 	box-sizing: border-box;
 
 	justify-content: center;
 	text-overflow: hidden;
-}
-
-.col {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin: 0;
-	padding: 0;
-
-	text-align: center;
 }
 
 .help-button {
@@ -160,13 +155,43 @@ h6 {
 	background-color: black;
 }
 
-.img-container {
-	display: inline-block;
-	height: 100%;
+.row {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: nowrap;
+
+	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 
-img {
+.col-33 {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
 	width: 100%;
+	margin: auto;
+}
+
+.choices {
+	width: 80%;
+	height: max-content;
+	margin: 0;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.choices img {
+	display: flex;
+	justify-self: center;
+	align-self: center;
+	align-items: center;
+	width: 100%;
+	margin: 1%;
 	box-shadow: 2px 2px 6px #062634;
 }
