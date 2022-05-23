@@ -56,7 +56,7 @@
 }
 
 .menu__box {
-    display: flex;
+    display: fixed;
     position: fixed;
     top: 0;
     right: -100%;

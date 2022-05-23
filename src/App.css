@@ -103,7 +103,7 @@ h3 {
 	height: max-content;
 	padding: 70px 0 0 0;
 	box-sizing: border-box;
-
+	
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;

@@ -42,7 +42,7 @@ const useOriginal = () => {
 				setError(false);
 			}
 		} else {
-			console.log("Please choose one file");
+			// console.log("Please choose one file");
 		}
 	}
 

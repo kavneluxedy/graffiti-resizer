@@ -6,60 +6,49 @@ import useDownload from "../hooks/useDownload";
 import ChoiceImage from "./ChoiceImage";
 
 const Resize = (props) => {
-	const { file, setFile } = useOriginal();
-	const { modifiedImg } = useResize();
-	const { downloadHandler } = useDownload();
+  const { modifiedImg } = useResize();
+  const { downloadHandler } = useDownload();
 
-	const fileInput = localStorage.getItem("fileInput");
-	// ! Give to download func
+  const fileInput = localStorage.getItem("fileInput");
+  // ! Give to download func
 
-	useEffect(() => {
-		if (file) {
-			let name = file.name.replace(/.jpeg|.jpg|.png|.gif/gi, "");
-			var toAdd = "_";
-			let ext = file.type.replace("image/", ".");
-			let fileName = name + toAdd + ext;
-			downloadHandler(fileInput, fileName, file.type);
-		}
-	}, [modifiedImg]);
+  return (
+    <div>
+      {props.originalImg && (
+        <div className="sub-container">
+          <div className="row">
+            <h3>Choisissez la taille d'image que vous souhaitez obtenir</h3>
+          </div>
+          <div className="col-33">
+            <ChoiceImage srcOrigin={props.originalImg.src} file={props.file} />
+          </div>
 
-	return (
-		<div>
-			{props.originalImg && (
-				<div className="sub-container">
-					<div className="row">
-						<h3>Choisissez la taille d'image que vous souhaitez obtenir</h3>
-					</div>
-					<div className="col-33">
-						<ChoiceImage srcOrigin={props.originalImg.src} />
-					</div>
+          <div className="col">
+            <br />
+            Original Image Size (MB): <b>{props.originalImg.originalSizeMB}</b>
+            <br />
+            Original Image Size (KB): <b>{props.originalImg.originalSizeKB}</b>
+          </div>
 
-					<div className="col">
-						<br />
-						Original Image Size (MB): <b>{props.originalImg.originalSizeMB}</b>
-						<br />
-						Original Image Size (KB): <b>{props.originalImg.originalSizeKB}</b>
-					</div>
+          {/* HIDDEN ORIGINAL IMG */}
+          <img
+            src={props.originalImg.src}
+            style={{ display: "none", width: "100%" }}
+          />
+          {/* HIDDEN */}
+        </div>
+      )}
 
-					{/* HIDDEN ORIGINAL IMG */}
-					<img
-						src={props.originalImg.src}
-						style={{ display: "none", width: "100%" }}
-					/>
-					{/* HIDDEN */}
-				</div>
-			)}
-
-			{props.modifiedImg && (
-				<div className="col">
-					<ChoiceImage srcModif={props.modifiedImg.src} />
-					<br />
-					New Image Size (MB): <b>{props.modifiedImg.modifiedSizeMB}</b>
-					<br />
-					New Image Size (KB): <b>{props.originalImg.modifiedSizeKB}</b>
-				</div>
-			)}
-		</div>
-	);
+      {props.modifiedImg && (
+        <div className="col">
+          <ChoiceImage srcModif={props.modifiedImg.src} file={props.file} />
+          <br />
+          New Image Size (MB): <b>{props.modifiedImg.modifiedSizeMB}</b>
+          <br />
+          New Image Size (KB): <b>{props.originalImg.modifiedSizeKB}</b>
+        </div>
+      )}
+    </div>
+  );
 };
 export default Resize;
