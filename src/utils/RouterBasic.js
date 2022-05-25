@@ -7,16 +7,16 @@ import Resize from "../components/Resize";
 
 const RouterBasic = () => {
 	return (
-			<BrowserRouter>
-				<Routes>
-					<Route exact path="/" element={<Home />} />
-					<Route exact path="home" element={<Home />} />
-					<Route path="app" element={<App />} />
-					<Route path="resize" element={<Resize />} />
-					<Route path="help" element={<Help />} />
-					<Route path="head" element={<Header />} />
-				</Routes>
-			</BrowserRouter>
+		<BrowserRouter>
+			<Routes>
+				<Route exact path="/" element={<Home />} />
+				<Route exact path="home" element={<Home />} />
+				<Route path="app" element={<App />} />
+				<Route path="resize" element={<Resize />} />
+				<Route path="help" element={<Help />} />
+				<Route path="head" element={<Header />} />
+			</Routes>
+		</BrowserRouter>
 	);
 };
 

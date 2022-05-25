@@ -1,30 +1,52 @@
+const webpack = require("webpack");
+const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
-const { webpack } = require("webpack");
-
-// Any directories you will be adding code/files into
-// need to be added to this array so webpack will pick them up
-const defaultInclude = path.resolve(__dirname, "src");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const loader = require("mini-css-extract-plugin");
 
 module.exports = {
-  mode: "production",
-  entry: path.resolve(__dirname, "./src/App.js"),
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "App.bundle.js",
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: "css-loader",
-        include: defaultInclude,
-      },
-      {
-        test: /\.jsx?$/,
-        loader: "babel-loader",
-        include: defaultInclude,
-      },
-    ],
-  },
+	entry: "./src/index.js",
+	// target: "electron-renderer",
+	output: {
+		path: resolve(__dirname, "dist"),
+		filename: "[name].bundle.js",
+	},
+	module: {
+		rules: [
+			{
+				test: /\.(js|jsx)$/,
+				use: "babel-loader",
+				exclude: "",
+			},
+			{
+				test: /\.css$/,
+				use: "css-loader",
+			},
+			{
+				test: /\.svg$/,
+				use: "file-loader",
+			},
+			// {
+			// 	test: /\.png$/,
+			// 	use: [
+			// 		{
+			// 			loader: "url-loader",
+			// 			options: {
+			// 				mimetype: "image/png",
+			// 			},
+			// 		},
+			// 	],
+			// },
+		],
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			templateContent: ({ htmlWebpackPlugin }) =>
+				'<!DOCTYPE html><html><head><meta charset="utf-8"><title>' +
+				htmlWebpackPlugin.options.title +
+				'</title></head><body><div id="app"></div></body></html>',
+			filename: "index.html",
+		}),
+		new MiniCssExtractPlugin(),
+	],
 };

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import { useEffect } from "react";
 import useOriginal from "../hooks/useOriginal";
 import useResize from "../hooks/useResize";
@@ -6,11 +6,6 @@ import useDownload from "../hooks/useDownload";
 import ChoiceImage from "./ChoiceImage";
 
 const Resize = (props) => {
-  const { modifiedImg } = useResize();
-  const { downloadHandler } = useDownload();
-
-  const fileInput = localStorage.getItem("fileInput");
-  // ! Give to download func
 
   return (
     <div>
