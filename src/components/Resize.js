@@ -1,12 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
-import useOriginal from "../hooks/useOriginal";
-import useResize from "../hooks/useResize";
-import useDownload from "../hooks/useDownload";
-import ChoiceImage from "./ChoiceImage";
+import ChoiceImage from "./ChoiceImage.js";
 
 const Resize = (props) => {
-
   return (
     <div>
       {props.originalImg && (

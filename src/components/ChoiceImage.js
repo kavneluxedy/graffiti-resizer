@@ -1,7 +1,7 @@
 import download from "downloadjs";
 import React, { useEffect, useLayoutEffect } from "react";
-import useOriginal from "../hooks/useOriginal";
-import useResize from "../hooks/useResize";
+import useOriginal from "../hooks/useOriginal.js";
+import useResize from "../hooks/useResize.js";
 
 const ChoiceImage = ({ srcOrigin, srcModif, file }) => {
   const { setFile } = useOriginal();

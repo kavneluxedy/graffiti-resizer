@@ -1,7 +1,7 @@
 import React from "react";
-import SvgAuthor from "../assets/img/svg/SvgAuthor";
 import { Link } from "react-router-dom";
-import SvgHome from "../assets/img/svg/SvgHome";
+import SvgAuthor from "../common/img/svg/SvgAuthor.js";
+import SvgHome from "../common/img/svg/SvgHome.js";
 
 const Home = () => {
   return (

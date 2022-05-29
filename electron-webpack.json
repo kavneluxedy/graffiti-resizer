@@ -1,0 +1,13 @@
+{
+  "title": "GraffitiResize",
+  "commonSourceDirectory": "src",
+  "staticSourceDirectory": "assets",
+  "commonDistDirectory": "dist",
+  "main": {
+    "extraEntries": ["src/preload/index.js"],
+    "sourceDirectory": "src/main"
+  },
+  "renderer": {
+    "webpackConfig": "webpack.renderer.config.cjs"
+  }
+}

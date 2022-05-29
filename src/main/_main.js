@@ -1,6 +1,11 @@
 const { app, BrowserWindow } = require("electron");
 const isDev = require("electron-is-dev");
-// const { ipcMain } = require("electron/main");
+const path = require("path");
+const { ipcMain } = require("electron/main");
+
+if (module.hot) {
+  module.hot.accept();
+}
 
 function createWindow() {
   // Create the browser window.
@@ -12,16 +17,11 @@ function createWindow() {
     },
   });
 
-  // Load the index.html from an url
-  isDev
-    ? win.loadURL("http://localhost:3000")
-    : win.loadFile("./public/index.html");
+  // Load the index.html from an url or a file
+  isDev ? win.loadURL("http://localhost:3000") : win.loadFile("index.html");
 
   // Open the DevTools.
   win.webContents.openDevTools();
-
-  // Debug
-  console.log(win);
 }
 
 // This method will be called when Electron has finished
@@ -49,3 +49,7 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+// ! Put Main Process Here !!!
+
+// ESM syntax is supported.
+export {};

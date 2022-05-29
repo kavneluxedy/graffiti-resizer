@@ -1,7 +1,7 @@
 import download from "downloadjs";
 import { useEffect, useState, useRef } from "react";
 import FileResizer from "react-image-file-resizer";
-import useOriginal from "./useOriginal";
+import useOriginal from "./useOriginal.js";
 
 const useResize = () => {
   const fileInput = useRef();
@@ -13,7 +13,7 @@ const useResize = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log(file, width, height);
+    // console.log(file, width, height);
     if (file && width && height) {
       resize(file, width, height);
     }

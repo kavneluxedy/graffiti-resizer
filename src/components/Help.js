@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./templates/Header";
+import Header from "./templates/Header.js";
 
 const Help = () => {
 	return (
