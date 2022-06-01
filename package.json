@@ -1,81 +1,68 @@
 {
-  "name": "graffiti-packages",
-  "author": "Quentin Cavenel",
-  "description": "Grattifi-Resize | For Graffiti Agency's Clients and others",
-  "version": "1.0.0",
-  "private": false,
-  "license": "UNLICENSED",
-  "main": "src/main/main.js",
-  "module": "src/main/_main.js",
-  "type": "module",
-  "scripts": {
-    "dev": "react-scripts start",
-    "compile": "electron-webpack",
-    "dist": "yarn compile && electron-builder",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
-  },
-  "dependencies": {
-    "downloadjs": "^1.4.7",
-    "electron-webpack": "^2.8.2",
-    "esm": "^3.2.25",
-    "http-server": "^14.1.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-image-file-resizer": "^0.4.7",
-    "react-router-dom": "^6.3.0",
-    "source-map-support": "^0.5.16"
-  },
-  "devDependencies": {
-    "@babel/preset-react": "^7.17.12",
-    "@types/react": "^18.0.9",
-    "babel-loader": "^8.2.5",
-    "concurrently": "^7.2.0",
-    "cross-env": "^7.0.3",
-    "electron": "^19.0.1",
-    "electron-builder": "^23.0.3",
-    "electron-is-dev": "^2.0.0",
-    "react-scripts": "^5.0.1",
-    "wait-on": "^6.0.1",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.10"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "build": {
-    "appId": "com.graffitiresize.app",
-    "directories": {
-      "output": "dist",
-      "buildResources": "assets"
-    },
-    "files": {
-      "filter": "src/**/*"
-    },
-    "extraMetadata": {
-      "main": "src/main/index.js"
-    },
-    "compression": "store",
-    "mac": {
-      "identity": null
-    },
-    "extends": "react-cra",
-    "electronVersion": "19.0.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kavneluxedy/graffiti-resizer.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kavneluxedy/graffiti-resizer/issues"
-  },
-  "homepage": "https://github.com/kavneluxedy/graffiti-resizer#readme"
+	"name": "graffiti-resize",
+	"author": "Quentin Cavenel",
+	"description": "For Graffiti Agency's Consumers and others",
+	"version": "1.0.0",
+	"private": false,
+	"license": "UNLICENSED",
+	"scripts": {
+		"start": "concurrently -k \"cross-env BROWSER=none react-scripts start\" \"build-electron -d\" \"wait-on public/.build-electron-done http://localhost:3000 && electron .\"",
+		"build": "build-electron && react-scripts build",
+		"postinstall": "electron-builder install-app-deps",
+		"dev": "electron-webpack",
+		"compile": "electron-webpack src/main/index.js -o dist/bundle.js",
+		"dist": "concurrently \"npm run compile\" && \"electron-builder\"",
+		"dist:dir": "npm run dist --dir -c.compression=store -c.mac.identity=null"
+	},
+	"dependencies": {
+		"downloadjs": "^1.4.7",
+		"electron-webpack": "^2.8.2",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"react-image-file-resizer": "^0.4.7",
+		"react-router-dom": "^6.3.0",
+		"source-map-support": "^0.5.16"
+	},
+	"devDependencies": {
+		"@babel/preset-react": "^7.17.12",
+		"@types/react": "^18.0.9",
+		"babel-loader": "^8.2.5",
+		"build-electron": "^1.0.4",
+		"concurrently": "^7.2.0",
+		"cross-env": "^7.0.3",
+		"electron": "^19.0.1",
+		"electron-builder": "^23.0.3",
+		"electron-is-dev": "^2.0.0",
+		"react-scripts": "^5.0.1",
+		"wait-on": "^6.0.1",
+		"webpack": "^4.46.0"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"main": "public/main.js",
+	"build": {
+		"extraMetadata": {
+			"main": "build/main.js"
+		},
+		"files": [
+			"build/**/*"
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kavneluxedy/graffiti-resizer.git"
+	},
+	"bugs": {
+		"url": "https://github.com/kavneluxedy/graffiti-resizer/issues"
+	}
 }
